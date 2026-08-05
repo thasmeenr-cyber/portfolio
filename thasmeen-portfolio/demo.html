@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food Checkout UI</title>
+  <style>
+    :root {
+      --bg1: #f6efe3;
+      --bg2: #fffefa;
+      --orange: #ff6b35;
+      --text: #222;
+      --muted: #7a7a7a;
+      --white: #ffffff;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .phone {
+      width: 100%;
+      max-width: 430px;
+      background: transparent;
+      padding: 18px;
+      border-radius: 30px;
+    }
+
+    .screen {
+      display: none;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .screen.active { display: flex; }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .back-btn, .primary-btn {
+      border: none;
+      cursor: pointer;
+      border-radius: 16px;
+      font-weight: 700;
+    }
+
+    .back-btn {
+      width: 48px;
+      height: 48px;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      font-size: 20px;
+      color: var(--text);
+    }
+
+    .topbar h2 { margin: 0; font-size: 28px; }
+    .topbar p { margin: 2px 0 0; color: var(--muted); font-size: 12px; letter-spacing: 1.2px; text-transform: uppercase; }
+
+    .card {
+      background: var(--white);
+      border-radius: 32px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .summary-title { font-size: 20px; font-weight: 700; margin-bottom: 8px; }
+    .summary-desc { color: var(--muted); line-height: 1.5; }
+    .price { font-size: 30px; font-weight: 700; text-align: right; margin-top: 10px; }
+
+    .row { display: flex; justify-content: space-between; align-items: center; padding: 6px 0; }
+    .row .label { color: var(--muted); }
+    .row.total { font-weight: 700; color: var(--text); }
+
+    .food-hero {
+      height: 220px;
+      border-radius: 28px;
+      background: linear-gradient(180deg, #fed4c0 0%, #ff9a70 100%);
+      margin-bottom: 16px;
+    }
+
+    .food-title { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+    .food-price { font-size: 24px; font-weight: 700; margin-top: 12px; }
+
+    .primary-btn {
+      width: 100%;
+      height: 56px;
+      background: var(--orange);
+      color: var(--white);
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <section class="screen" id="screen1">
+      <div class="topbar">
+        <div style="width:48px"></div>
+        <div>
+          <p>Order Summary</p>
+          <h2>Checkout</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="summary-title">Chicken Biryani</div>
+        <div class="summary-desc">Richly spiced yummy Biryani served with juicy chicken pieces.</div>
+        <div class="price">₹280</div>
+      </div>
+
+      <div class="card">
+        <div class="row"><span class="label">Taxes & Charges</span><span>₹15</span></div>
+        <div class="row"><span class="label">Delivery Fee</span><span>₹20</span></div>
+        <div class="row total"><span>Grand Total</span><span>₹315</span></div>
+      </div>
+
+      <button class="primary-btn" onclick="showScreen(3)">Place Order</button>
+    </section>
+
+    <section class="screen active" id="screen2">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen(1)">&lt;</button>
+        <div>
+          <p>Restaurant</p>
+          <h2>Chicken Biryani</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="food-hero"></div>
+        <div class="food-title">Chicken Biryani</div>
+        <div class="summary-desc">Richly spiced yummy Biryani served with juicy chicken pieces.</div>
+        <div class="food-price">₹250</div>
+      </div>
+
+      <button class="primary-btn" onclick="showScreen(1)">Add to Cart</button>
+    </section>
+
+    <section class="screen" id="screen3">
+      <div class="topbar">
+        <button class="back-btn" onclick="showScreen(2)">&lt;</button>
+        <div>
+          <p>Checkout</p>
+          <h2>Your Order</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="row"><span class="label">Item Total</span><span>₹280</span></div>
+        <div class="row"><span class="label">Coupon Discount</span><span>-₹20</span></div>
+        <div class="row total"><span>Grand Total</span><span>₹260</span></div>
+      </div>
+
+      <button class="primary-btn" onclick="alert('Order confirmed!')">Confirm Order</button>
+    </section>
+  </div>
+
+  <script>
+    function showScreen(id) {
+      const screens = document.querySelectorAll('.screen');
+      screens.forEach(screen => screen.classList.remove('active'));
+      document.getElementById('screen' + id).classList.add('active');
+    }
+  </script>
+</body>
+</html>

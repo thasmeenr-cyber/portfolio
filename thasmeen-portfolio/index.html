@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>R. Thasmeen — Frontend Developer & UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F3E9CE;
+    --paper-2: #ECE0BE;
+    --ink: #2A2117;
+    --ink-soft: #5A4E3E;
+    --maroon: #7A2331;
+    --mustard: #C98A2B;
+    --green: #4B6B4B;
+    --card: #FFFBF1;
+    --line: rgba(42,33,23,0.16);
+    --shadow: 0 18px 40px rgba(42,33,23,0.14);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    background-image:
+      radial-gradient(rgba(42,33,23,0.035) 1px, transparent 1px);
+    background-size: 22px 22px;
+    color: var(--ink);
+    font-family: 'Work Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--maroon);
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  /* ---------- Header / menu nav ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(243,233,206,0.92);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.02em;
+  }
+  .brand span { color: var(--maroon); }
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 28px;
+    margin: 0;
+    padding: 0;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  nav a {
+    text-decoration: none;
+    color: var(--ink-soft);
+    position: relative;
+    padding-bottom: 3px;
+  }
+  nav a:hover { color: var(--maroon); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 92px 0 60px;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .hero h1 {
+    font-size: 52px;
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--maroon);
+    font-weight: 500;
+  }
+  .hero p.lede {
+    margin-top: 20px;
+    font-size: 18px;
+    color: var(--ink-soft);
+    max-width: 46ch;
+  }
+  .hero-ctas {
+    margin-top: 32px;
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 13px 22px;
+    border-radius: 3px;
+    display: inline-block;
+    border: 1.5px solid var(--ink);
+    transition: all .15s ease;
+  }
+  .btn-solid {
+    background: var(--maroon);
+    border-color: var(--maroon);
+    color: var(--card);
+  }
+  .btn-solid:hover { background: #611b26; }
+  .btn-outline { color: var(--ink); }
+  .btn-outline:hover { background: var(--ink); color: var(--card); }
+
+  /* ticket card */
+  .ticket {
+    background: var(--card);
+    border-radius: 4px;
+    box-shadow: var(--shadow);
+    position: relative;
+    padding: 26px 24px;
+  }
+  .ticket::before, .ticket::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: var(--paper);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .ticket::before { left: -11px; }
+  .ticket::after { right: -11px; }
+
+  .order-ticket {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+  .order-ticket .tt-head {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1.5px dashed var(--line);
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    color: var(--ink-soft);
+  }
+  .order-ticket .tt-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 7px 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .order-ticket .tt-row:last-of-type { border-bottom: none; }
+  .order-ticket .tt-status {
+    margin-top: 16px;
+    background: var(--green);
+    color: var(--card);
+    text-align: center;
+    padding: 9px;
+    border-radius: 3px;
+    letter-spacing: 0.08em;
+  }
+
+  /* ---------- Section shell ---------- */
+  section { padding: 70px 0; }
+  .section-head { margin-bottom: 42px; }
+  .section-head h2 { font-size: 34px; font-weight: 600; margin-top: 8px; }
+  .rule {
+    border: none;
+    border-top: 1.5px dashed var(--line);
+    margin: 0 0 70px;
+  }
+
+  /* ---------- About ---------- */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 0.9fr 1.1fr;
+    gap: 50px;
+  }
+  .about-grid p { color: var(--ink-soft); font-size: 16.5px; }
+  .about-grid p + p { margin-top: 14px; }
+  .stat-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+  .stat {
+    border-left: 3px solid var(--mustard);
+    padding-left: 16px;
+  }
+  .stat .num {
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--maroon);
+  }
+  .stat .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+  }
+
+  /* ---------- Menu / skills ---------- */
+  .menu-cols {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+  }
+  .menu-col h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--maroon);
+    font-style: italic;
+  }
+  .menu-col .num-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--mustard);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .menu-col ul {
+    list-style: none;
+    padding: 0;
+    margin: 16px 0 0;
+  }
+  .menu-col li {
+    padding: 9px 0;
+    border-bottom: 1px dotted var(--line);
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+  .menu-col li:last-child { border-bottom: none; }
+
+  /* ---------- Projects ---------- */
+  .project {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: center;
+    margin-bottom: 64px;
+  }
+  .project:nth-child(even) .project-media { order: 2; }
+  .project-card {
+    background: var(--card);
+    border: 1.5px dashed var(--line);
+    border-radius: 6px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+  }
+  .project-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--mustard);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .project-card h3 {
+    font-size: 25px;
+    margin-top: 8px;
+    font-weight: 600;
+  }
+  .project-card p.desc {
+    color: var(--ink-soft);
+    margin-top: 12px;
+  }
+  .ingredients {
+    margin-top: 18px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    color: var(--ink-soft);
+  }
+  .ingredients b { color: var(--ink); font-weight: 600; }
+  .chip-row { margin-top: 8px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11.5px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 4px 11px;
+    color: var(--ink-soft);
+  }
+  .project-links { margin-top: 20px; display: flex; gap: 12px; }
+  .project-links a {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12.5px;
+    text-decoration: none;
+    color: var(--maroon);
+    border-bottom: 1px solid var(--maroon);
+    padding-bottom: 1px;
+  }
+
+  .project-media { display: flex; justify-content: center; }
+  .flyer-frame img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    border: 6px solid var(--card);
+  }
+
+  /* phone frame for the live demo */
+  .phone-bezel {
+    width: 250px;
+    background: var(--ink);
+    border-radius: 34px;
+    padding: 12px 10px;
+    box-shadow: var(--shadow);
+  }
+  .phone-bezel .notch {
+    width: 70px;
+    height: 16px;
+    background: var(--ink);
+    border-radius: 0 0 12px 12px;
+    margin: -12px auto 8px;
+    position: relative;
+    z-index: 2;
+    background: #14100b;
+  }
+  .phone-bezel iframe {
+    width: 100%;
+    height: 460px;
+    border: none;
+    border-radius: 20px;
+    background: var(--paper);
+    display: block;
+  }
+
+  .screens-strip {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 18px;
+  }
+  .screens-strip img {
+    width: 64px;
+    border-radius: 8px;
+    border: 2px solid var(--card);
+    box-shadow: 0 4px 14px rgba(42,33,23,0.18);
+    opacity: 0.85;
+  }
+
+  /* ---------- Footer / receipt ---------- */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 0 40px;
+  }
+  .receipt {
+    max-width: 380px;
+    margin: 0 auto;
+    background: var(--card);
+    color: var(--ink);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 30px 26px;
+    border-radius: 2px;
+    position: relative;
+  }
+  .receipt h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .receipt .sub {
+    text-align: center;
+    color: var(--ink-soft);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .receipt .r-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .receipt .r-row a { text-decoration: none; color: var(--maroon); }
+  .receipt .r-total {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1.5px dashed var(--ink);
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+  }
+  .zigzag {
+    height: 10px;
+    background:
+      linear-gradient(135deg, var(--ink) 25%, transparent 25%) -5px 0,
+      linear-gradient(225deg, var(--ink) 25%, transparent 25%) -5px 0;
+    background-size: 10px 10px;
+    background-repeat: repeat-x;
+  }
+  .foot-note {
+    text-align: center;
+    margin-top: 26px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--paper-2);
+    letter-spacing: 0.04em;
+  }
+
+  @media (max-width: 860px) {
+    nav ul { display: none; }
+    .hero { grid-template-columns: 1fr; padding-top: 60px; }
+    .hero h1 { font-size: 38px; }
+    .about-grid { grid-template-columns: 1fr; }
+    .menu-cols { grid-template-columns: repeat(2, 1fr); }
+    .project, .project:nth-child(even) .project-media { grid-template-columns: 1fr; order: 0; }
+    .project { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+
+  a:focus-visible, .btn:focus-visible {
+    outline: 2px solid var(--maroon);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-inner">
+    <div class="brand">R. <span>Thasmeen</span></div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#specials">Specials</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero" id="top">
+    <div>
+      <p class="eyebrow">Frontend Developer · UI/UX Designer</p>
+      <h1>Interfaces, <em>plated</em><br>with care.</h1>
+      <p class="lede">B.E. Computer Science graduate, self-taught in HTML, CSS, JavaScript and UI/UX design. I design and build clean, usable screens — then actually ship them, from Figma file to working code.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="#specials">See the specials →</a>
+        <a class="btn btn-outline" href="https://github.com/thasmeenr-cyber/food_app_practice" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="ticket order-ticket">
+      <div class="tt-head">
+        <span>ORDER #01</span>
+        <span>TODAY</span>
+      </div>
+      <div class="tt-row"><span>Frontend fundamentals</span><span>HTML · CSS · JS</span></div>
+      <div class="tt-row"><span>UI/UX design</span><span>Figma</span></div>
+      <div class="tt-row"><span>Print design</span><span>Flyers · Pamphlets</span></div>
+      <div class="tt-row"><span>Version control</span><span>Git + GitHub</span></div>
+      <div class="tt-status">AVAILABLE FOR HIRE</div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-head">
+      <p class="eyebrow">01 — About</p>
+      <h2>From the front of house<br>to the front end.</h2>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I graduated with a B.E. in Computer Science in 2014, then spent years running the daily operations of a family retail business and teaching — work that sharpened how I communicate, solve problems, and manage details under pressure.</p>
+        <p>I've since returned to tech on my own terms: teaching myself HTML, CSS, JavaScript and UI/UX design from the ground up, and using that to design and build real, working interfaces rather than just tutorials.</p>
+      </div>
+      <div class="stat-stack">
+        <div class="stat">
+          <div class="num">2014</div>
+          <div class="lbl">B.E. Computer Science</div>
+        </div>
+        <div class="stat">
+          <div class="num">3+</div>
+          <div class="lbl">Self-directed projects shipped</div>
+        </div>
+        <div class="stat">
+          <div class="num">01</div>
+          <div class="lbl">Working app, live below ↓</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- MENU / SKILLS -->
+  <section id="menu">
+    <div class="section-head">
+      <p class="eyebrow">02 — The Menu</p>
+      <h2>Skills, by course.</h2>
+    </div>
+    <div class="menu-cols">
+      <div class="menu-col">
+        <span class="num-tag">STARTERS</span>
+        <h3>Front-End</h3>
+        <ul>
+          <li>HTML5</li>
+          <li>CSS3</li>
+          <li>Responsive layout</li>
+        </ul>
+      </div>
+      <div class="menu-col">
+        <span class="num-tag">MAINS</span>
+        <h3>Scripting</h3>
+        <ul>
+          <li>JavaScript (ES6 fundamentals)</li>
+          <li>Interactive UI logic</li>
+        </ul>
+      </div>
+      <div class="menu-col">
+        <span class="num-tag">SIDES</span>
+        <h3>Design</h3>
+        <ul>
+          <li>UI/UX principles</li>
+          <li>Figma</li>
+          <li>Adobe Photoshop</li>
+          <li>Print & graphic design</li>
+        </ul>
+      </div>
+      <div class="menu-col">
+        <span class="num-tag">KITCHEN TOOLS</span>
+        <h3>Workflow</h3>
+        <ul>
+          <li>Git basics</li>
+          <li>JSBin</li>
+          <li>AI tools (Claude, Gemini, ChatGPT)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <hr class="rule">
+
+  <!-- PROJECTS -->
+  <section id="specials">
+    <div class="section-head">
+      <p class="eyebrow">03 — Today's Specials</p>
+      <h2>Projects, tried and tasted.</h2>
+    </div>
+
+    <!-- Project 1: live demo -->
+    <div class="project">
+      <div class="project-card">
+        <span class="project-tag">Special No. 1 — Live Demo</span>
+        <h3>Food App UI/UX Design</h3>
+        <p class="desc">A complete ordering flow designed in Figma, then hand-coded into a working front end — from browsing a dish, to cart, to checkout confirmation.</p>
+        <div class="ingredients"><b>Ingredients:</b> Figma, HTML, CSS, JavaScript</div>
+        <div class="chip-row">
+          <span class="chip">Browse</span>
+          <span class="chip">Cart</span>
+          <span class="chip">Checkout</span>
+        </div>
+        <div class="project-links">
+          <a href="https://github.com/thasmeenr-cyber/food_app_practice" target="_blank" rel="noopener">View repository →</a>
+        </div>
+      </div>
+      <div class="project-media">
+        <div>
+          <div class="phone-bezel">
+            <div class="notch"></div>
+            <iframe src="demo.html" title="Live food app checkout demo"></iframe>
+          </div>
+          <div class="screens-strip">
+            <img src="assets/food-home.png" alt="Food app home screen design">
+            <img src="assets/food-item.png" alt="Food app item detail screen design">
+            <img src="assets/food-cart.png" alt="Food app cart screen design">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Project 2: flyer -->
+    <div class="project">
+      <div class="project-card">
+        <span class="project-tag">Special No. 2</span>
+        <h3>Pamphlet & Flyer Design</h3>
+        <p class="desc">A bilingual restaurant flyer, designed for a real home-kitchen food shop — balancing a packed menu with clear structure and appetite appeal.</p>
+        <div class="ingredients"><b>Ingredients:</b> Layout, typography, bilingual menu design</div>
+        <div class="chip-row">
+          <span class="chip">Typography</span>
+          <span class="chip">Print layout</span>
+        </div>
+      </div>
+      <div class="project-media flyer-frame">
+        <img src="assets/flyer.jpg" alt="Bilingual restaurant flyer design, Samy Samayal food shop">
+      </div>
+    </div>
+
+    <!-- Project 3: symposium site -->
+    <div class="project">
+      <div class="project-card">
+        <span class="project-tag">Special No. 3</span>
+        <h3>College Technical Symposium Website</h3>
+        <p class="desc">Designed and built the website for my college's technical symposium — my first taste of building something real for other people to actually use.</p>
+        <div class="ingredients"><b>Ingredients:</b> HTML, web design fundamentals</div>
+        <div class="chip-row">
+          <span class="chip">2013–2014</span>
+        </div>
+      </div>
+      <div class="project-media">
+        <div class="ticket order-ticket" style="width:100%; max-width:320px;">
+          <div class="tt-head"><span>SYMPOSIUM</span><span>2013–14</span></div>
+          <div class="tt-row"><span>Role</span><span>Designer/Builder</span></div>
+          <div class="tt-row"><span>Stack</span><span>HTML</span></div>
+          <div class="tt-status" style="background:var(--mustard); color:var(--ink);">EARLY WORK</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- CONTACT / RECEIPT FOOTER -->
+<footer id="contact">
+  <div class="receipt">
+    <h3>R. Thasmeen</h3>
+    <div class="sub">Frontend Developer · UI/UX Designer</div>
+    <div class="r-row"><span>Email</span><a href="mailto:thasmeen.r@gmail.com">thasmeen.r@gmail.com</a></div>
+    <div class="r-row"><span>Phone</span><span>9043624768</span></div>
+    <div class="r-row"><span>Location</span><span>Coimbatore, India</span></div>
+    <div class="r-row"><span>GitHub</span><a href="https://github.com/thasmeenr-cyber/food_app_practice" target="_blank" rel="noopener">thasmeenr-cyber</a></div>
+    <div class="r-total"><span>Status</span><span>Open to work</span></div>
+  </div>
+  <div class="foot-note">Thank you for stopping by — come again.</div>
+</footer>
+
+</body>
+</html>
